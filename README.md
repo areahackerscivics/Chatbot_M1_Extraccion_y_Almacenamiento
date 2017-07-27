@@ -1,18 +1,19 @@
 # Chatbot_M1_Extraccion_y_Almacenamiento
 
-#readme.md
-##Descripción
+# readme.md
+## Descripción
 Este repositorio contiene scripts para recolectar la información relacionada a temas financieros y presupuestarios del Ayuntamiento de València y almacenarla en una base de datos MongoDB. El código creado puede adaptarse para ser reutilizado por otro ayuntamiento si se cumple los requisitos de formatos de archivos de entrada.
 
 Se recogen datos de impuestos por barrios, salarios de funcionarios y plan de cuentas del ayuntamiento, se cambia la estructura y se limpia los datos para ser almacenados en una base de datos no estructurada(MongoDB).
 
-##Guía de uso
+## Guía de uso
 La carga de datos se ha dividido deacuerdo a la temática de datos a ser tratados, y cada temática tendrá unos documentos de entrada y la estructura de la base de datos de salida.
 
 
-##Equipo
+## Equipo
 - Autor principal:
   [Arnau Campos]()
+  
   [Valeria Haro](https://about.me/valexharo) | @valexharo
 
 - Director del proyecto:
