@@ -3,6 +3,12 @@
 Created on Tue Jun  6 13:08:03 2017
 
 @author: vahaval
+
+Script para insertar o actualizar los sinonimos de un barrio
+
+Recibe un archivo de sinonimos y requiere que previamente se haya ejecutado 
+el script  etl_division_administrativa.py  
+
 """
 import csv
 from pymongo import MongoClient
