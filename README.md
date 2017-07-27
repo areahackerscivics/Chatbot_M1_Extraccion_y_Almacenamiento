@@ -7,22 +7,126 @@ Este repositorio contiene scripts para recolectar la información relacionada a 
 Se realizan procesos ETL (Extracción, transformación y carga) para datos de impuestos por barrios, salarios de funcionarios y para el plan de cuentas del ayuntamiento. Se leen los archivos, se cambia la estructura de los datos y se limpia los datos para guardarlos en la base de datos
 
 ## Guía de uso
-# Herramientas
+### Herramientas
 Python 3.5.2
 
 LIBRERÍAS EN PYTHON
-Pymongo
-Json
-CSV
-Numpy
-BeautifulSoup
+- Pymongo
+- Json
+- CSV
+- Numpy
+- BeautifulSoup
 
 La carga de datos se ha dividido deacuerdo a la temática de datos, y cada uno tiene unos formatos para los documentos de entrada y la estructura de la base de datos de salida.
 
-# Salarios
+### Impuestos por barrios
+script   1. etl_division_administrativa.py
+         2. etl_sinonimos_barrios.py
+         3. etl_impuestos_barrrios.py
+         
+Los scripts deben ejecutarse en un orden determinado, primero ingresar la información de la división administrativa del ayuntamiento que considera el ingreso de barrios y el distrito asociado.
+
+**Entrada**: Archivo de barrios, que contiene las siguientes columnas : 
+                | WKT | codbarrio  | nombre | coddistbar | coddistrit |
+             (* Si tiene la columna codbarrio y nombre el algoritmo funciona)
+             Archivo de distritos
+                | WKT | coddistrit | nombre |
+**Salida**: 
+Colección = barrio_impuestos
+
+```json
+{
+    "_id" : ObjectId("XXXXXXXXX"),
+    "entidad" : "XXXXXX",
+    "anio" : xxxx,
+    "id_barrio" : XXX,
+    "barrio" : "XXXX",
+    "barrio_key" : "XXXX_XXXXX",
+    "fecha_actualizacion" : "XXXX-XX-XXTXX:XX:XX.XXXZ",
+    distrito: {
+        "entidad" : "XXXXX", 
+        "distrito_key" : "XXXX"
+        "id_distrito" : XXX,
+        "distrito" : "XXXX"
+    }
+}
+
+```
+El siguiente script a ejecutarse es **etl_sinonimos_barrios.py** , este agrega al objeto barrio un listado de sinonimos
+**Entrada**: Archivo de barrios, que contiene las siguientes columnas : 
+                | NombreBarrio | Sinonimo 1 | Sinonimo 2 | ... | Sinonimo N |
+             (* La primera columna que contien el nombre de barrio debe ser igual al nombre del barrio ya ingresado)
+             
+**Salida**: 
+Colección = barrio_impuestos
+
+```json
+{
+    "_id" : ObjectId("XXXXXXXXX"),
+    "entidad" : "XXXXXX",
+    "anio" : xxxx,
+    "id_barrio" : XXX,
+    "barrio" : "XXXX",
+    "barrio_key" : "XXXX_XXXXX",
+    "fecha_actualizacion" : "XXXX-XX-XXTXX:XX:XX.XXXZ",
+    distrito: {
+        "entidad" : "XXXXX", 
+        "distrito_key" : "XXXX"
+        "id_distrito" : XXX,
+        "distrito" : "XXXX"
+    },
+    **sinonimos: [
+        "Sinonimo 1 ",
+        "Sinonimo 2 ",
+        "...",
+        "Sinonimo N"
+    ]**
+}
+```          
+Para completar la temática falta ingresar los impuestos asociados al barrio, el script **etl_impuestos_barrios.py** cumple esta función.
+**Entrada**: Archivo de impuestos asignados al barrio, que contienen las siguientes columnas : 
+                | id_barrio | barrio | Impuesto 1 | Impuesto 2 | ... | Impuesto N |            
+**Salida**: 
+Colección = barrio_impuestos
+
+```json
+{
+    "_id" : ObjectId("XXXXXXXXX"),
+    "entidad" : "XXXXXX",
+    "anio" : xxxx,
+    "id_barrio" : XXX,
+    "barrio" : "XXXX",
+    "barrio_key" : "XXXX_XXXXX",
+    "fecha_actualizacion" : "XXXX-XX-XXTXX:XX:XX.XXXZ",
+    distrito: {
+        "entidad" : "XXXXX", 
+        "distrito_key" : "XXXX"
+        "id_distrito" : XXX,
+        "distrito" : "XXXX"
+    },
+    sinonimos: [
+        "Sinonimo 1 ",
+        "Sinonimo 2 ",
+        "...",
+        "Sinonimo N"
+    ],
+    **impuestos: {
+        "periodicidad" : "XXXX",
+        "entidad" : "XXXX",
+        "fecha_actualizacion" : "XXXX-XX-XXTXX:XX:XX.XXXZ",
+        "impuesto1" : XXX.XX,
+        "impuesto2" : XXX.XX,
+        "........." : XXX.XX,
+        "impuestoN" : XXX.XX,
+    }**
+}
+``` 
+
+
+### Salarios
 script = webscraping_salarios.py
 
-Para extraer los datos de salarios se realiza web scraping en la Web del ayuntamiento. Para realizar esta acción se tiene que identificar el objeto html que contiene los datos requeridos, en este caso los datos están almacenados en una tabla por lo que usaremos las etiquetas <table>, <td> y <tr>. 
+Para extraer los datos de salarios se realiza web scraping en la Web del ayuntamiento. Para realizar esta acción se tiene que identificar el objeto html que contiene los datos requeridos, en este caso los datos están almacenados en una tabla por lo que usaremos las etiquetas ```html <table>, <td> y <tr>. ```
 
 **Entrada**: URL 
              La tabla a extraer tiene 4 columnas
