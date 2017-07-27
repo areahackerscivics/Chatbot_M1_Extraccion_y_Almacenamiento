@@ -2,12 +2,46 @@
 
 # readme.md
 ## Descripción
-Este repositorio contiene scripts para recolectar la información relacionada a temas financieros y presupuestarios del Ayuntamiento de València y almacenarla en una base de datos MongoDB. El código creado puede adaptarse para ser reutilizado por otro ayuntamiento si se cumple los requisitos de formatos de archivos de entrada.
+Este repositorio contiene scripts para recolectar la información relacionada a temas financieros y presupuestarios del Ayuntamiento de València para almacenarlos en una base de datos Mongo. El código creado puede ser reutilizado por otro ayuntamiento si se cumple los requisitos de formatos de los archivos de entrada.
 
-Se recogen datos de impuestos por barrios, salarios de funcionarios y plan de cuentas del ayuntamiento, se cambia la estructura y se limpia los datos para ser almacenados en una base de datos no estructurada(MongoDB).
+Se realizan procesos ETL (Extracción, transformación y carga) para datos de impuestos por barrios, salarios de funcionarios y para el plan de cuentas del ayuntamiento. Se leen los archivos, se cambia la estructura de los datos y se limpia los datos para guardarlos en la base de datos
 
 ## Guía de uso
-La carga de datos se ha dividido deacuerdo a la temática de datos a ser tratados, y cada temática tendrá unos documentos de entrada y la estructura de la base de datos de salida.
+# Herramientas
+Python 3.5.2
+
+LIBRERÍAS EN PYTHON
+Pymongo
+Json
+CSV
+Numpy
+BeautifulSoup
+
+La carga de datos se ha dividido deacuerdo a la temática de datos, y cada uno tiene unos formatos para los documentos de entrada y la estructura de la base de datos de salida.
+
+# Salarios
+script = webscraping_salarios.py
+
+Para extraer los datos de salarios se realiza web scraping en la Web del ayuntamiento. Para realizar esta acción se tiene que identificar el objeto html que contiene los datos requeridos, en este caso los datos están almacenados en una tabla por lo que usaremos las etiquetas <table>, <td> y <tr>. 
+
+**Entrada**: URL 
+             La tabla a extraer tiene 4 columnas
+**Salida**: 
+Colección = salarios
+
+```json
+{
+    "_id" : ObjectId("XXXXXXXXX"),
+    "nombre" : "XXXXXX",
+    "salario" : xx.xx,
+    "sexo" : "XXXX",
+    "cargo" : "XXXXXXX",
+    "fecha_desde" : ISODate("XXXX-XX-XXTXX:XX:XX.XXXZ"),
+    "fecha_actualizacion" : ISODate("XXXX-XX-XXTXX:XX:XX.XXXZ")
+}
+
+```
+             
 
 
 ## Equipo
@@ -37,6 +71,3 @@ El [**Àrea Hackers cívics**](http://civichackers.cc) ha sido impulsada por la 
 ![](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)El contenido de este repositorio está sujeto a la licencia [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/).
 
 
-
-#Salarios
-Para extraer los datos de salarios se realiza web scraping en la Web del ayuntamiento. Para realizar esta acción se tiene que identificar el objeto html que contiene los datos requeridos, en este caso los datos están almacenados en una tabla por lo que usaremos las etiquetas <table>, <td> y <tr>. Se creo un script en python para extraer los datos de una tabla web si cambias los parámetros como la URL de extracción y la conexión a la base de datos donde se carga de datos, puedes reutilizar el código proporcionado.
