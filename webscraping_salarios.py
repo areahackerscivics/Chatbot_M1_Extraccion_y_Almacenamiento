@@ -12,26 +12,26 @@ para lo cual se realiza scraping de la URL del ayuntamiento que contiene los dat
 from bs4 import BeautifulSoup
 import pandas as pd
 import requests
+import config
 from pymongo import MongoClient
 from datetime import datetime
 
+#Variables
+# URL para extraer datos
+URL = "http://www.valencia.es/ayuntamiento/ayuntamiento.nsf/vDocumentosTituloAux/95FFD56E2D7211EFC1257D86004964FA?OpenDocument&bdOrigen=ayuntamiento%2Fayuntamiento.nsf&idapoyo=5353592E3883B9ADC12578AB0035DCF0&lang=1&nivel=2_1"
+#variable que contiene la fecha desde que son validos los salarios anuales brutos a extraerse definida en un acuerdo
+fecha_acuerdo='2015-07-08'
 
 #Conexion con la base de datos
-user_bd = "XXX"
-pass_bd = "XXX"
-client = MongoClient("mongodb://"+user_bd+ ":"+ pass_bd+"@ds127321.mlab.com:27321/datos_valencia")
+client = MongoClient("mongodb://"+config.user+ ":"+ config.password + config.url_mongodb)
 db = client.datos_valencia
-#creamos el indice para que el cargo y el nombre del funcionario sean registrados como unicos
+
 db.salarios.create_index(
     [("cargo",1), ("nombre", 1)],
     unique=True
 )
 
 # ******************* SCRAPING  **********************************************
-#variable que contiene la fecha desde que son validos los salarios anuales brutos a extraerse definida en un acuerdo
-fecha_acuerdo='2015-07-08'
-# URL para extraer datos
-URL = "http://www.valencia.es/ayuntamiento/ayuntamiento.nsf/vDocumentosTituloAux/95FFD56E2D7211EFC1257D86004964FA?OpenDocument&bdOrigen=ayuntamiento%2Fayuntamiento.nsf&idapoyo=5353592E3883B9ADC12578AB0035DCF0&lang=1&nivel=2_1"
 # Realizamos la petición a la web
 req = requests.get(URL)
 # Comprobamos que la petición nos devuelve una respuesta valida
@@ -84,6 +84,6 @@ if status_code == 200:
         #insertamos los datos almacenados en el diccionario a la base de datos    
         db.salarios.insert_many(df.to_dict('records'))
     except:
-        print ("Error al insertar datos")
+        print ("ERROR - INSERTAR SALARIOS ")
 else:
-    print ("Status Code %d" % status_code)
+    print ("ERROR - ACCESO A LA WEB  %d" % status_code)
