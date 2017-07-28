@@ -17,23 +17,29 @@ LIBRERÍAS EN PYTHON
 - Numpy
 - BeautifulSoup
 
-La carga de datos se ha dividido deacuerdo a la temática de datos, y cada uno tiene unos formatos para los documentos de entrada y la estructura de la base de datos de salida.
+La carga de datos se ha dividido de acuerdo a la temática de datos, y cada uno tiene unos formatos para los documentos de entrada y la estructura de la base de datos de salida.
 
 ### Impuestos por barrios
 Esta temática requiere de 3 scripts que deben ser ejecutados en el siguiente orden:
-- 1. etl_division_administrativa.py
-- 2. etl_sinonimos_barrios.py
-- 3. etl_impuestos_barrrios.py
+- 1 etl_division_administrativa.py
+- 2 etl_sinonimos_barrios.py
+- 3 etl_impuestos_barrrios.py
          
 Primero ingresar la información de la división administrativa del ayuntamiento usando el script **etl_division_administrativa.py** que considera el ingreso de barrios y el distrito asociado.
 
 **Entrada**: Archivo de barrios, que contiene las siguientes columnas : 
 
 
-             - ```   | WKT | codbarrio  | nombre | coddistbar | coddistrit |  ```
-             (* Si tiene la columna codbarrio y nombre el algoritmo funciona)
-             Archivo de distritos
-             - ```   | WKT | coddistrit | nombre |  ```
+             ```   | WKT | codbarrio  | nombre | coddistbar | coddistrit |  ```
+ (* Si tiene la columna codbarrio y nombre el algoritmo funciona)
+ 
+ 
+   Archivo de distritos
+  
+  
+              ```   | WKT | coddistrit | nombre |  ```
+
+
 **Salida**: 
 Colección = barrio_impuestos
 
@@ -55,11 +61,16 @@ Colección = barrio_impuestos
 }
 
 ```
+
+
 El siguiente script a ejecutarse es **etl_sinonimos_barrios.py** , este agrega al objeto barrio un listado de sinonimos
 **Entrada**: Archivo de barrios, que contiene las siguientes columnas : 
-             - ```   | NombreBarrio | Sinonimo 1 | Sinonimo 2 | ... | Sinonimo N | ```
-             (* La primera columna que contien el nombre de barrio debe ser igual al nombre del barrio ya ingresado)
+
+
+             ```   | NombreBarrio | Sinonimo 1 | Sinonimo 2 | ... | Sinonimo N | ```
+(* La primera columna que contien el nombre de barrio debe ser igual al nombre del barrio ya ingresado)
              
+
 **Salida**: 
 Colección = barrio_impuestos
 
@@ -86,9 +97,16 @@ Colección = barrio_impuestos
     ]
 }
 ```          
+
 Para completar la temática falta ingresar los impuestos asociados al barrio, el script **etl_impuestos_barrios.py** cumple esta función.
+
+
 **Entrada**: Archivo de impuestos asignados al barrio, que contienen las siguientes columnas : 
-             - ``` | id_barrio | barrio | Impuesto 1 | Impuesto 2 | ... | Impuesto N |   ```       
+
+
+            ``` | id_barrio | barrio | Impuesto 1 | Impuesto 2 | ... | Impuesto N |   ```       
+
+
 **Salida**: 
 Colección = barrio_impuestos
 
@@ -129,9 +147,12 @@ Colección = barrio_impuestos
 ### Salarios
 script = webscraping_salarios.py
 
+
 Para extraer los datos de salarios se realiza web scraping en la Web del ayuntamiento. Para realizar esta acción se tiene que identificar el objeto html que contiene los datos requeridos, en este caso los datos están almacenados en una tabla por lo que usaremos las etiquetas ``` <table>, <td> y <tr>. ```
 
+
 **Entrada**: URL ( La tabla HTML a extraer tiene 4 columnas)
+
 
 **Salida**: 
 Colección = salarios
@@ -153,16 +174,21 @@ Colección = salarios
 ### Plan de Cuentas
 script = etl_plan_cuentas.py
 
+
 Este script permite guardar el plan de cuentas del ayuntamiento de un archivo plano a la base de datos, considerando usar una estructura adecuada.
 
+
 **Entrada**: Archivo de cuentas 
-             - ```| anio | id_plan | id_cuenta | nombre_cuenta | credito_inicial | ```
- La característica peculiar en los datos es que la longitud del id_cuenta, determina el nivel de la cuenta a crear.
+
+              ```| anio | id_plan | id_cuenta | nombre_cuenta | credito_inicial | ```
+
+La característica peculiar en los datos es que la longitud del id_cuenta, determina el nivel de la cuenta a crear.
  - id_cuenta = 1 , es una cuenta padre
  - id_cuenta = 11, subcuenta de primer nivel
  - id_cuenta = 111, subcuenta de segundo nivel
  - id_cuenta = 1111, subcuenta de segundo nivel
               
+
 **Salida**: 
 Colección = plan_cuentas
 
@@ -219,9 +245,9 @@ Colección = plan_cuentas
 
 ## Equipo
 - Autor principal:
-  - [Arnau Campos]()
+  - [Arnau Campos](https://www.linkedin.com/in/arnau-campos-albuixech-759b23138/) | F
   
-  - [Valeria Haro](https://about.me/valexharo) | @valexharo
+  - [Valeria Haro](https://about.me/valexharo) | @ValeriaHaro
 
 - Director del proyecto:
 
