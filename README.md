@@ -28,6 +28,8 @@ Esta temática requiere de 3 scripts que deben ser ejecutados en el siguiente or
 Primero ingresar la información de la división administrativa del ayuntamiento usando el script **etl_division_administrativa.py** que considera el ingreso de barrios y el distrito asociado.
 
 **Entrada**: Archivo de barrios, que contiene las siguientes columnas : 
+
+
              - ```   | WKT | codbarrio  | nombre | coddistbar | coddistrit |  ```
              (* Si tiene la columna codbarrio y nombre el algoritmo funciona)
              Archivo de distritos
