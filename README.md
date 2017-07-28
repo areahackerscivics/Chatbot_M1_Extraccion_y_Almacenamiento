@@ -30,14 +30,14 @@ Primero ingresar la información de la división administrativa del ayuntamiento
 **Entrada**: Archivo de barrios, que contiene las siguientes columnas : 
 
 
-             ```   | WKT | codbarrio  | nombre | coddistbar | coddistrit |  ```
+                | WKT | codbarrio  | nombre | coddistbar | coddistrit |  
  (* Si tiene la columna codbarrio y nombre el algoritmo funciona)
  
  
    Archivo de distritos
   
   
-              ```   | WKT | coddistrit | nombre |  ```
+                 | WKT | coddistrit | nombre |  
 
 
 **Salida**: 
@@ -67,7 +67,7 @@ El siguiente script a ejecutarse es **etl_sinonimos_barrios.py** , este agrega a
 **Entrada**: Archivo de barrios, que contiene las siguientes columnas : 
 
 
-             ```   | NombreBarrio | Sinonimo 1 | Sinonimo 2 | ... | Sinonimo N | ```
+                | NombreBarrio | Sinonimo 1 | Sinonimo 2 | ... | Sinonimo N | 
 (* La primera columna que contien el nombre de barrio debe ser igual al nombre del barrio ya ingresado)
              
 
@@ -104,7 +104,7 @@ Para completar la temática falta ingresar los impuestos asociados al barrio, el
 **Entrada**: Archivo de impuestos asignados al barrio, que contienen las siguientes columnas : 
 
 
-            ``` | id_barrio | barrio | Impuesto 1 | Impuesto 2 | ... | Impuesto N |   ```       
+             | id_barrio | barrio | Impuesto 1 | Impuesto 2 | ... | Impuesto N |          
 
 
 **Salida**: 
@@ -112,7 +112,7 @@ Colección = barrio_impuestos
 
 ```json
 {
-    "_id" : ObjectId("XXXXXXXXX"),
+    "_id" : "XXXXXXXXX",
     "entidad" : "XXXXXX",
     "anio" : xxxx,
     "id_barrio" : XXX,
@@ -180,7 +180,7 @@ Este script permite guardar el plan de cuentas del ayuntamiento de un archivo pl
 
 **Entrada**: Archivo de cuentas 
 
-              ```| anio | id_plan | id_cuenta | nombre_cuenta | credito_inicial | ```
+              | anio | id_plan | id_cuenta | nombre_cuenta | credito_inicial | 
 
 La característica peculiar en los datos es que la longitud del id_cuenta, determina el nivel de la cuenta a crear.
  - id_cuenta = 1 , es una cuenta padre
@@ -245,7 +245,7 @@ Colección = plan_cuentas
 
 ## Equipo
 - Autor principal:
-  - [Arnau Campos](https://www.linkedin.com/in/arnau-campos-albuixech-759b23138/) | F
+  - [Arnau Campos](https://www.linkedin.com/in/arnau-campos-albuixech-759b23138/) | 
   
   - [Valeria Haro](https://about.me/valexharo) | @ValeriaHaro
 
