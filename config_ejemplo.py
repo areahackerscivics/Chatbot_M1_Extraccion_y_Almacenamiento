@@ -16,4 +16,7 @@ password = "YOUR PASSWORD MONGO DB"
 # la URL de la base de datos tiene la siguiente estructura
 # @ds1port.mlab.com:port/name_db
 url_mongodb = "YOUR URL"
- 
+
+port = "mongo port"
+
+

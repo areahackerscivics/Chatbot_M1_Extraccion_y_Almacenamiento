@@ -23,7 +23,8 @@ URL = "http://www.valencia.es/ayuntamiento/ayuntamiento.nsf/vDocumentosTituloAux
 fecha_acuerdo='2015-07-08'
 
 #Conexion con la base de datos
-client = MongoClient("mongodb://"+config.user+ ":"+ config.password + config.url_mongodb)
+#client = MongoClient("mongodb://"+config.user+ ":"+ config.password + config.url_mongodb)
+client = MongoClient("localhost",27017)
 db = client.datos_valencia
 
 db.salarios.create_index(

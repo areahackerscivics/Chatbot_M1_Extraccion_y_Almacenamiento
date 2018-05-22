@@ -11,7 +11,7 @@ Previamente ejecutar el script etl_division_administrativa.py y
 
 """
 import csv
-import config
+#import config
 from pymongo import MongoClient
 from datetime import datetime
 
@@ -19,7 +19,8 @@ from datetime import datetime
 file_impuestos = 'informe.csv'
 
 #conexion a la base de datos 
-client = MongoClient("mongodb://"+config.user+ ":"+ config.password + config.url_mongodb)
+#client = MongoClient("mongodb://"+config.user+ ":"+ config.password + config.url_mongodb)
+client = MongoClient("localhost",27017)
 db = client.datos_valencia
 
 #lectura del archivo con la informacion impuestos por barrios
@@ -27,6 +28,10 @@ reader = csv.DictReader(open(file_impuestos,encoding="utf8"), delimiter=',')
 #variable que indica el año al que pertenecen los datos
 anio=2016
 #recorre el archivo
+for row in reader:
+  print(row)
+
+'''
 for row in reader:
         #elimina los espacios en blanco al inicio y fin del string 
         barrio = row["barrio"].strip()
@@ -53,3 +58,4 @@ for row in reader:
                     db.barrio_impuestos.update_one({'barrio_key':element["barrio_key"] , "anio": anio}, { '$set' : { "impuestos" : row}},True)
             else:
                 print("ERROR - INSERTAR IMPUESTOS - No se encuentra", barrio)
+'''

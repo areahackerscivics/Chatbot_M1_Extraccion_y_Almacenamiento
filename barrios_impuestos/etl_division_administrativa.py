@@ -12,7 +12,7 @@ Almacena los barrios incluyendo el distrito al que pertenecen
 
 
 import csv
-import config
+#import config
 from pymongo import MongoClient
 from datetime import datetime
 
@@ -28,14 +28,16 @@ reader = csv.DictReader(open(file_barrios,encoding="utf8"), delimiter=';')
 reader_distrito = csv.DictReader(open(file_distritos,encoding="utf8"), delimiter=';')
 
 #conexion a la base de datos 
-client = MongoClient("mongodb://"+config.user+ ":"+ config.password + config.url_mongodb)
+#client = MongoClient("mongodb://"+config.user+ ":"+ config.password + config.url_mongodb)
+client = MongoClient('localhost',27017)
 db = client.datos_valencia
 #crear indices de claves unicas
 db.barrio_impuestos.create_index(
     [("barrio_key",1), ("anio", 1)],
     unique=True
 )
-
+#URL de acceso:  http://mapas.valencia.es/lanzadera/opendata/Barrios/CSV  download barrio.csv 
+#URL de acceso:  http://mapas.valencia.es/lanzadera/opendata/Distritos/CSV download distritos.csv
 #definir la variable que indica el año al que pertenecen los datos de carga
 anio=2016
 #Recorre los datos del archivo distritos y crea un diccionario con la estructura:

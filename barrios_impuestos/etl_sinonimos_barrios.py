@@ -12,14 +12,15 @@ el script  etl_division_administrativa.py
 """
 import csv
 from pymongo import MongoClient
-import config
+#import config
 
 #Variables
 #Nombre del archivo que contiene los datos
 file_sinonimos = "sinonimos.csv"
 
 #conexion a la base de datos 
-client = MongoClient("mongodb://"+config.user+ ":"+ config.password + config.url_mongodb)
+#client = MongoClient("mongodb://"+config.user+ ":"+ config.password + config.url_mongodb)
+client = MongoClient('localhost',27017)
 db = client.datos_valencia
 
 #Lectura del archivo que contiene los sinónimos
