@@ -1,4 +1,10 @@
 #!/usr/bin/env/python
+"""
+Created on wed Apr 28 1:25:02 2018
+
+@author: Ricard
+"""
+
 #datos presupestarios general..
 #ayuntamiento valencia...
 import requests
@@ -31,7 +37,7 @@ db = client.datos_valencia
 presupuesto = db.presupuesto
 
 def presupuesto_general():
-     
+  ## extrae los gastos y los guarda en la base de datos
   years = [2011,2012,2013,2014,2015,2016,2017,2018]
   for year in years:
    total =0

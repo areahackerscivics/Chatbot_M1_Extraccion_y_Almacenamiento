@@ -7,7 +7,7 @@ Se realizan procesos ETL (Extracción, transformación y carga) para datos de im
 
 ## Guía de uso
 ### Herramientas
-Python 3.5.2
+Python 3.6.0
 
 LIBRERÍAS EN PYTHON
 - Pymongo
@@ -191,6 +191,7 @@ La característica peculiar en los datos es que la longitud del id_cuenta, deter
 **Salida**: 
 Colección = plan_cuentas
 
+
 ```json
 {
     "_id" : "XXXXXXXXX",
@@ -242,11 +243,31 @@ Colección = plan_cuentas
 
 ```
 
+Script = **extraccion_presupuesto.py**
+
+El script extrae del [portal de transparencia Valencia](http://www.valencia.es/somclars/es/#/?_k=p2po5w) el presupuesto general.
+
+**Entrada**: presupuesto general de la pagina de transparencia
+
+
+**Salida**
+
+Colección = presupuesto
+        json
+        { 
+         "_id" : ObjectId("xxxxxxxxxxxxxxxxxx",
+         "Provincia" : "Valencia",
+         "presupuesto" : "811.347.108,60", 
+         "anio" : 2018
+        }
+
 ## Equipo
 - Autor principal:
   - [Arnau Campos](https://www.linkedin.com/in/arnau-campos-albuixech-759b23138/) | 
   
   - [Valeria Haro](https://about.me/valexharo) | @ValeriaHaro
+
+  - [Ricardo Cancar](https://about.me/r.cancar) | 
 
 - Director del proyecto:
 

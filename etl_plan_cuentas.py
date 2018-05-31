@@ -27,7 +27,8 @@ import config
 file_cuentas= 'gastos.json'
 
 #Conexion a la base de datos Mongo
-client = MongoClient("mongodb://"+config.user+ ":"+ config.password + config.url_mongodb)
+#client = MongoClient("mongodb://"+config.user+ ":"+ config.password + config.url_mongodb)'
+client = MongoClient('localhost',27017)
 db = client.datos_valencia
 #crear un indice de claves unicas
 db.plan_cuentas.create_index(
