@@ -255,7 +255,7 @@ El script extrae del [portal de transparencia Valencia](http://www.valencia.es/s
 Colección = presupuesto
 ```json
 { 
-  "_id" : ObjectId("xxxxxxxxxxxxxxxxxx",
+  "_id" : ObjectId("xxxxxxxxxxxxxxxxxx"),
   "Provincia" : "Valencia",
   "presupuesto" : "811.347.108,60", 
   "anio" : 2018
