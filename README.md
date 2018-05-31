@@ -253,14 +253,14 @@ El script extrae del [portal de transparencia Valencia](http://www.valencia.es/s
 **Salida**
 
 Colección = presupuesto
-        json
-        { 
-         "_id" : ObjectId("xxxxxxxxxxxxxxxxxx",
-         "Provincia" : "Valencia",
-         "presupuesto" : "811.347.108,60", 
-         "anio" : 2018
-        }
-
+```json
+{ 
+  "_id" : ObjectId("xxxxxxxxxxxxxxxxxx",
+  "Provincia" : "Valencia",
+  "presupuesto" : "811.347.108,60", 
+  "anio" : 2018
+}
+```
 ## Equipo
 - Autor principal:
   - [Arnau Campos](https://www.linkedin.com/in/arnau-campos-albuixech-759b23138/) | 
