@@ -256,9 +256,9 @@ Colección = presupuesto
 ```json
 { 
   "_id" : ObjectId("xxxxxxxxxxxxxxxxxx"),
-  "Provincia" : "Valencia",
-  "presupuesto" : "811.347.108,60", 
-  "anio" : 2018
+  "Provincia" : "xxxxxx",
+  "presupuesto" : "xxxxxx", 
+  "anio" : xxxx
 }
 ```
 ## Equipo
