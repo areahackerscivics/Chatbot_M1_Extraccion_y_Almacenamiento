@@ -245,9 +245,9 @@ Colección = plan_cuentas
 
 Script = **extraccion_presupuesto.py**
 
-El script extrae del [portal de transparencia Valencia](http://www.valencia.es/somclars/es/#/?_k=p2po5w) el presupuesto general.
+El script permite extraer del [portal de transparencia Valencia](http://www.valencia.es/somclars/es/#/?_k=p2po5w) el presupuesto general del ayuntamiento.
 
-**Entrada**: presupuesto general de la pagina de transparencia
+**Entrada**: presupuesto general de la página de transparencia
 
 
 **Salida**
